@@ -22,7 +22,7 @@ node{
       withMaven(jdk: 'JDK_local', maven: 'MVN_Local') {
       sh 'mvn clean package'
 	      echo "**** ${GIT_COMMIT}"
-	step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${BUILD_NUMBER}" )
+	step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${newComponentVersionId}" )
 	
 	     
     }
@@ -67,6 +67,9 @@ stage ("Appscan"){
             ]
         ]
     ])
+	  def newComponentVersionId = "${env.jenkins-jpet-component_VersionId}"
+	  step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${newComponentVersionId}" )
+
 	/*step([$class: 'UCDeployPublisher',
         	siteName: 'ucd-server',
         	deploy: [
