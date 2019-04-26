@@ -1,6 +1,9 @@
 node{
+	def GIT_COMMIT
   stage ('cloning the repository'){
-      git 'https://github.com/tapansirol/jpet-store'
+	  
+      def scm = git 'https://github.com/tapansirol/jpet-store'
+	  GIT_COMMIT = scm.GIT_COMMIT
   }
 	
   //stage('SonarQube analysis') {
