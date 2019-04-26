@@ -4,6 +4,7 @@ node{
 	  
       def scm = git 'https://github.com/tapansirol/jpetstore-demo'
 	  GIT_COMMIT = scm.GIT_COMMIT
+	   echo "**** ${GIT_COMMIT}"
 	  
   }
 	
