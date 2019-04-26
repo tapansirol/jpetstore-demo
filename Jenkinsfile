@@ -57,7 +57,7 @@ stage ("Appscan"){
             ],
             delivery: [
                 $class: 'com.urbancode.jenkins.plugins.ucdeploy.DeliveryHelper$Push',
-                pushVersion: 'ver${BUILD_NUMBER}',
+                pushVersion: '1.${BUILD_NUMBER}',
                 //baseDir: '/var/jenkins_home/workspace/JPetStore/target',
 		 baseDir: '/var/jenkins_home/workspace/jpetstore/target',
                 fileIncludePatterns: '*.war',
@@ -67,22 +67,34 @@ stage ("Appscan"){
             ]
         ]
     ])
-	step([$class: 'UCDeployPublisher',
+	/*step([$class: 'UCDeployPublisher',
         	siteName: 'ucd-server',
         	deploy: [
             	$class: 'com.urbancode.jenkins.plugins.ucdeploy.DeployHelper$DeployBlock',
             	deployApp: 'JPetStore',
             	deployEnv: 'JPetStore_Dev',
-            	deployProc: 'Deploy-JPetStore',
+            	deployProc: 'Deploy',
             	createProcess: [
                 	$class: 'com.urbancode.jenkins.plugins.ucdeploy.ProcessHelper$CreateProcessBlock',
                 	processComponent: 'Deploy'
             	],
-            	deployVersions: 'jenkins-jpet-component:ver${BUILD_NUMBER}',
+            	deployVersions: 'jenkins-jpet-component:1.${BUILD_NUMBER}',
 		//deployVersions: 'SNAPSHOT=Base Configuration',
             	deployOnlyChanged: false
         ]
     ])
+	  */
+	  step([$class: 'UCDeployPublisher',
+		deploy: [ createSnapshot: deployWithSnapshot: true, 
+			 snapshotName: "1.${BUILD_NUMBER}",
+			 deployApp: 'JPetStore', 
+			 deployDesc: 'Requested from Jenkins', 
+			 deployEnv: 'JPetStore_Dev', 
+			 deployOnlyChanged: false, 
+			 deployProc: 'Deploy', 
+			 deployReqProps: '', 
+			 deployVersions: 'jenkins-jpet-component:1.${BUILD_NUMBER}'], 
+		siteName: 'ucd-server'])
  }
  
 stage ('HCL One Test') {
