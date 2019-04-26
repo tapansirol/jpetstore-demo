@@ -85,15 +85,15 @@ stage ("Appscan"){
     ])
 	  */
 	  step([$class: 'UCDeployPublisher',
-		deploy: [ createSnapshot: deployWithSnapshot: true, 
-			 snapshotName: "1.${BUILD_NUMBER}",
+		deploy: [ createSnapshot: [deployWithSnapshot: true, 
+			 snapshotName: "1.${BUILD_NUMBER}"],
 			 deployApp: 'JPetStore', 
 			 deployDesc: 'Requested from Jenkins', 
 			 deployEnv: 'JPetStore_Dev', 
 			 deployOnlyChanged: false, 
 			 deployProc: 'Deploy', 
 			 deployReqProps: '', 
-			 deployVersions: 'jenkins-jpet-component:1.${BUILD_NUMBER}', 
+			 deployVersions: "jenkins-jpet-component:1.${BUILD_NUMBER}"], 
 		siteName: 'ucd-server'])
  }
  
