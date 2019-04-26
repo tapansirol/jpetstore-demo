@@ -4,6 +4,7 @@ node{
 	  
       def scm = git 'https://github.com/tapansirol/jpetstore-demo'
 	  GIT_COMMIT = scm.GIT_COMMIT
+	  
   }
 	
   //stage('SonarQube analysis') {
@@ -16,14 +17,11 @@ node{
   stage ('Build') {
       withMaven(jdk: 'JDK_local', maven: 'MVN_Local') {
       sh 'mvn clean package'
-	     
-    }
-  }
-	 stage ('UCV') {
-		  echo "**** ${GIT_COMMIT}"
+	      echo "**** ${GIT_COMMIT}"
 	step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${BUILD_NUMBER}" )
 	
-     
+	     
+    }
   }
 	stage('SonarQube Analysis'){
 		def mvnHome = tool name : 'MVN_Local', type:'maven'
