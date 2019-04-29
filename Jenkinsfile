@@ -77,23 +77,7 @@ stage ("Appscan"){
 	  def newComponentVersionId = "${JpetComponent_VersionId}"
 	  step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${newComponentVersionId}" )
 	  echo "Demo123 ${newComponentVersionId}"
-	/*step([$class: 'UCDeployPublisher',
-        	siteName: 'ucd-server',
-        	deploy: [
-            	$class: 'com.urbancode.jenkins.plugins.ucdeploy.DeployHelper$DeployBlock',
-            	deployApp: 'JPetStore',
-            	deployEnv: 'JPetStore_Dev',
-            	deployProc: 'Deploy',
-            	createProcess: [
-                	$class: 'com.urbancode.jenkins.plugins.ucdeploy.ProcessHelper$CreateProcessBlock',
-                	processComponent: 'Deploy'
-            	],
-            	deployVersions: 'jenkins-jpet-component:1.${BUILD_NUMBER}',
-		//deployVersions: 'SNAPSHOT=Base Configuration',
-            	deployOnlyChanged: false
-        ]
-    ])
-	  */
+	
 	  step([$class: 'UCDeployPublisher',
 		deploy: [ createSnapshot: [deployWithSnapshot: true, 
 			 snapshotName: "1.${BUILD_NUMBER}"],
