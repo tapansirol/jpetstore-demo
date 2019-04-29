@@ -5,9 +5,9 @@ node{
       def scm = git 'https://github.com/tapansirol/jpetstore-demo'
 	  GIT_COMMIT = sh(returnStdout: true, script: "git rev-parse HEAD").trim()
 	  echo "AAAA ${GIT_COMMIT}"
-	  echo "BBBB ${scm}"
-	  GIT_COMMIT = scm.GIT_COMMIT
-	   echo "**** ${GIT_COMMIT}"
+	  //echo "BBBB ${scm}"
+	  //GIT_COMMIT = scm.GIT_COMMIT
+	   //echo "**** ${GIT_COMMIT}"
 	  
   }
 	
