@@ -73,9 +73,9 @@ stage ("Appscan"){
 		println it
 		}
 
-	  echo "Demo ${env.jenkins-jpet-component_VersionId}"
-	  def newComponentVersionId = "${env.jenkins-jpet-component_VersionId}"
-	  step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${newComponentVersionId}" )
+	  //echo "Demo ${env.jenkins-jpet-component_VersionId}"
+	  //def newComponentVersionId = "${env.jenkins-jpet-component_VersionId}"
+	  step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "jpetstore-${BUILD_NUMBER}" )
 
 	/*step([$class: 'UCDeployPublisher',
         	siteName: 'ucd-server',
