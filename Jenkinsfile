@@ -49,7 +49,7 @@ stage ("Appscan"){
         siteName: 'ucd-server',
         component: [
             $class: 'com.urbancode.jenkins.plugins.ucdeploy.VersionHelper$VersionBlock',
-            componentName: 'jenkins-jpet-component',
+            componentName: 'JpetComponent',
             createComponent: [
                 $class: 'com.urbancode.jenkins.plugins.ucdeploy.ComponentHelper$CreateComponentBlock',
                 componentTemplate: '',
@@ -73,8 +73,8 @@ stage ("Appscan"){
 		//println it
 		//}
 	echo "(*****)"
-	  echo "Demo1234 ${jenkins-jpet-component_VersionId}"
-	  def newComponentVersionId = ${jenkins-jpet-component_VersionId}
+	  echo "Demo1234 ${JpetComponent_VersionId}"
+	  def newComponentVersionId = ${JpetComponent_VersionId}
 	  //step($class: 'UploadBuild', tenantId: "5ade13625558f2c6688d15ce", revision: "${GIT_COMMIT}", appName: "JPetStore", requestor: "admin", id: "${jenkins-jpet-component_VersionId}" )
 	  echo "Demo123 ${newComponentVersionId}"
 	/*step([$class: 'UCDeployPublisher',
