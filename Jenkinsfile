@@ -103,7 +103,7 @@ stage ("Appscan"){
 			 deployOnlyChanged: false, 
 			 deployProc: 'Deploy-JPetStore', 
 			 deployReqProps: '', 
-			 deployVersions: "jenkins-jpet-component:1.${BUILD_NUMBER}"], 
+			 deployVersions: "JpetComponent:1.${BUILD_NUMBER}"], 
 		siteName: 'ucd-server'])
  }
  
